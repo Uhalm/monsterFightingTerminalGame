@@ -212,13 +212,18 @@ def fight():
 
 
 		if userIn == '1':
+			global trueDef;
 			trueDef = tempDef + random.randint(0, 5);
 			monAttk();
 		elif userIn == '2':
+			global trueDef;
+			global trueRes;
 			trueDef = tempDef + random.randint(10, 20);
+			trueRes = tempRes + random.randint(-5, 30);
 			monAttk();
 		elif userIn == '3':
-			magDef = tempRes + random.randint(30, 40);
+			global trueRes;
+			trueRes = tempRes + random.randint(20, 40);
 			monAttk();
 
 
@@ -277,9 +282,11 @@ def monAttk():
 		print('The monster has delt', trueMonAtk, 'dammage');
 		time.sleep(3);
 		finTrueHp = int(temHp) - int(trueMonAtk);
-		tempHP = finTrueHp;
+		tempHp = finTrueHp;
 		os.system(clear);
 		fight();
+
+
 	else:
 		print('Huh');
 		time.sleep(4);
