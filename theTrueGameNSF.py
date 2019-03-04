@@ -95,6 +95,10 @@ def HpCheck():
 	global magCool;
 	magCoolTemp = int(magCool) - 1;
 	magCool = magCoolTemp;
+	trueAtk = 0;
+	magAtk = 0;
+	trueDef = 0;
+	trueRes = 0;
 	if tempHp <= 0:
 		os.system(clear);
 		print('Game Over');
@@ -162,7 +166,7 @@ def fight():
 		userIn = input('>>>');
 
 		if userIn == '1':
-			trueAtk = int(tempAtk) + random.randint(-5, 5);
+			trueAtk = int(tempAtk) + random.randint(10, 25);
 			monHpTemp = int(monHp) - (monDef - int(trueAtk));
 			monHp = monHpTemp;
 			trueDef = deff;
@@ -170,8 +174,9 @@ def fight():
 			monAttk();
 			fight();
 		elif userIn == '2':
-			trueAtk = int(tempAtk) + random.randint(10, 20);
-			monHpTemp = int(monHp) - (monDef - int(trueAtk));
+			acAtk = int(tempAtk) + random.randint(30, 50);
+			trueAtk = int(acAtk) - int(monDef);
+			monHpTemp = int(monHp) - (int(acAtk) - monDef);
 			monHp = monHpTemp;
 			trueDef = deff;
 			print('You have delt ' + str(trueAtk) + ' dammage');
@@ -180,7 +185,7 @@ def fight():
 		elif userIn == '3':
 			global magCool;
 			if magCool <= 0:
-				magAtk = int(tempMag) + random.randint(10, 40);
+				magAtk = int(tempMag) + random.randint(40, 65);
 				magCool = 5;
 				monHpTemp = monHp - (magAtk - monDef);
 				monHp = monHpTemp;
@@ -252,10 +257,10 @@ def monAttk():
 	monType = random.randint(1, 3);
 	if monType == 1:
 		temHp = tempHp;
-		print('The monster attacks with it\' fist');
+		print('The monster attacks with it\'s fist');
 		trueMonAtk = (int(monAtk) + int(lvl)) - int(trueDef);
 		time.sleep(3);
-		print('The monster has done', trueMonAtk, 'dammage');
+		print('The monster has delt', trueMonAtk, 'dammage');
 		time.sleep(3);
 		finTrueHp = int(temHp) - int(trueMonAtk);
 		tempHp = finTrueHp;
@@ -277,7 +282,7 @@ def monAttk():
 	elif monType == 3:
 		temHp = tempHp;
 		print('The monster attacks with magic');
-		trueMonAtk = (int(monMag) + int(lvl) + random.randint(5, 7)) - int(trueRes);
+		trueMonAtk = (int(monMag) + int(lvl) + random.randint(10, 30)) - int(trueRes);
 		time.sleep(3);
 		print('The monster has delt', trueMonAtk, 'dammage');
 		time.sleep(3);
